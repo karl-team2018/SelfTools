@@ -6,18 +6,24 @@ import com.topcheer.tools.entity.MenuUrl;
 import com.topcheer.tools.security.User;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.endpoint.SecurityContext;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 @Controller
 public class PageController {
+
+    public final static Logger logger = LoggerFactory.getLogger(PageController.class);
+
     @Autowired
     MenuRepository menuRepository;
 
@@ -45,6 +51,14 @@ public class PageController {
         User user = (User)authentication.getPrincipal();
         System.out.println(user.getRoles());
         return "tools";
+    }
+
+    @RequestMapping("/pages/{pagename}")
+    public String getPages(@PathVariable String pagename){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User)authentication.getPrincipal();
+        logger.info("User==>{username:"+user.getUsername()+"userrole:"+user.getRoles()+"}"+"get page:"+pagename);
+        return "pages/"+pagename;
     }
 
 
