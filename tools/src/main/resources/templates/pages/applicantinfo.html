@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>求职者信息</title>
+    <link rel="stylesheet" href="../third/layui/css/layui.css" media="all">
+    <!--<link rel="stylesheet" href="../static/third/layui/css/layui.css" media="all">-->
+</head>
+<body>
+<div class="layui-collapse" style="margin-top: 10px" lay-accordion="">
+    <div class="layui-colla-item">
+        <h2 class="layui-colla-title">点击展开/收起查询条件</h2>
+        <div class="layui-colla-content layui-show">
+            <form class="layui-form" action="">
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">请选择条件</label>
+                    <div class="layui-input-inline">
+                        <select name="quiz1">
+                            <option value="">请选择领域</option>
+                            <option value="浙江" selected="">浙江省</option>
+                            <option value="你的工号">江西省</option>
+                            <option value="你最喜欢的老师">福建省</option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline">
+                        <select name="quiz2">
+                            <option value="">请选择题型</option>
+                            <option value="杭州">杭州</option>
+                            <option value="宁波" disabled="">宁波</option>
+                            <option value="温州">温州</option>
+                            <option value="温州">台州</option>
+                            <option value="温州">绍兴</option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline">
+                        <select name="quiz3">
+                            <option value="">请选择难易程度</option>
+                            <option value="西湖区">西湖区</option>
+                            <option value="余杭区">余杭区</option>
+                            <option value="拱墅区">临安市</option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline">
+                        <button class="layui-btn layui-btn-normal layui-btn-radius">查询</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<table class="layui-hide layui-table" id="test" lay-filter="test"></table>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+<!--<script type="text/javascript" src="../static/third/layui/layui.js"></script>-->
+<script type="text/javascript" src="../third/layui/layui.js"></script>
+<script>
+    //科目分类
+    var subject = {
+        "JAVA": "JAVA",
+        "C#": "C#",
+        "C++": "C++",
+        "SQL": "SQL",
+        "PYTHON": "PYTHON",
+        "JAVASCRIPT": "JAVASCRIPT",
+        "CSS": "CSS",
+        "HTML": "HTML",
+        "WINDWOS": "WINDWOS",
+        "LINUX": "LINUX"
+    }
+
+    //题目类型
+    var type = {
+        "1": "选择题",
+        "2": "填空题",
+        "3": "解答题",
+        "4": "开放题"
+    }
+    //题目难易程度
+    var difficult = {
+        "A": "非常简单",
+        "B": "简单",
+        "C": "一般",
+        "D": "有点难度",
+        "E": "非常难"
+    }
+
+    layui.use(['layer', 'laypage', 'table', 'element'], function () {
+        var laypage = layui.laypage,//分页
+            layer = layui.layer,//弹层
+            table = layui.table,//表格
+            element = layui.element//元素操作
+
+        layer.msg('Hello World!');
+
+        table.render({
+            elem: '#test',
+            width: '100%',
+            height: 'full-200',
+            url: '/data/test',
+            title: '用户表',
+            page: {
+                limits: [10, 50, 100],
+                layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'], //自定义分页布局
+                first: "首页",
+                last: "尾页"
+            },
+            toolbar: 'default',
+            totalRow: true,
+            cols: [
+                [
+                    {type: 'checkbox', fixed: 'left'},
+                    {field: 'id', title: 'ID', width: 80, sort: true, fixed: 'left', totalRowText: '合计'}
+                    , {field: 'username', title: '用户名', width: 80}
+                    , {field: 'experience', title: '积分', width: 80, sort: true, totalRow: true}
+                    , {field: 'sex', title: '性别', width: 80, sort: true}
+                    , {field: 'score', title: '评分', width: 80, sort: true, totalRow: true}
+                    , {field: 'city', title: '城市', width: 150}
+                    , {field: 'sign', title: '签名', width: 200}
+                    , {field: 'classify', title: '职业', width: 100}
+                    , {field: 'wealth', title: '财富', width: 135, sort: true, totalRow: true}
+                    , {fixed: 'right', width: 165, align: 'center', toolbar: '#barDemo'}
+                ]
+            ]
+        });
+
+        //监听头工具栏事件
+        table.on('toolbar(test)', function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id)
+                , data = checkStatus.data; //获取选中的数据
+            switch (obj.event) {
+                case 'add':
+                    layer.msg('添加');
+                    break;
+                case 'update':
+                    if (data.length === 0) {
+                        layer.msg('请选择一行');
+                    } else if (data.length > 1) {
+                        layer.msg('只能同时编辑一个');
+                    } else {
+                        layer.alert('编辑 [id]：' + checkStatus.data[0].id);
+                    }
+                    break;
+                case 'delete':
+                    if (data.length === 0) {
+                        layer.msg('请选择一行');
+                    } else {
+                        layer.msg('删除');
+                    }
+                    break;
+            }
+            ;
+        });
+
+        //监听行工具事件
+        table.on('tool(test)', function (obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+            var data = obj.data //获得当前行数据
+                , layEvent = obj.event; //获得 lay-event 对应的值
+            if (layEvent === 'detail') {
+                layer.msg('查看操作');
+            } else if (layEvent === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    obj.del(); //删除对应行（tr）的DOM结构
+                    layer.close(index);
+                    //向服务端发送删除指令
+                });
+            } else if (layEvent === 'edit') {
+                layer.msg('编辑操作');
+            }
+        });
+
+    })
+
+</script>
+
+</body>
+</html>
