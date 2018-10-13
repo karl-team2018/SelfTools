@@ -23,3 +23,5 @@ INSERT INTO test.t_menuurl (id, href, noteid, biz_block, parentnoteid, title, ic
 INSERT INTO test.t_menuurl (id, href, noteid, biz_block, parentnoteid, title, icon, spread, target, roles_id) VALUES (110, 'pages/interviewerinfo', 300101, 'employeeManagement', 0, '面试官信息', 'icon-text', '0', '0', 102);
 INSERT INTO test.t_menuurl (id, href, noteid, biz_block, parentnoteid, title, icon, spread, target, roles_id) VALUES (111, 'pages/interviewcontent', 300102, 'employeeManagement', 0, '面试内容', 'icon-text', '0', '0', 102);
 INSERT INTO test.t_menuurl (id, href, noteid, biz_block, parentnoteid, title, icon, spread, target, roles_id) VALUES (112, 'pages/questionbank', 300103, 'employeeManagement', 0, '题库', 'icon-text', '0', '0', 102);
+INSERT INTO test.t_menuurl (id, href, noteid, biz_block, parentnoteid, title, icon, spread, target, roles_id) VALUES (113, 'pages/newtraining', 200103, 'projectManager', 0, '新人培训', 'icon-text', '0', '0', 102);
+INSERT INTO test.t_menuurl (id, href, noteid, biz_block, parentnoteid, title, icon, spread, target, roles_id) VALUES (114, 'pages/deliverysystem', 200104, 'projectManager', 0, '交付体系文档', 'icon-text', '0', '_blank', 102);

@@ -39,6 +39,7 @@ public class GetMenuList {
                     json0.put("href", menu.getHref());
                     json0.put("spread", menu.getSpread());
                     json0.put("noteid", menu.getNoteid());
+                    json0.put("target",menu.getTarget());
                     JSONArray jsonA = (JSONArray) (json.get(menu.getBiz_block()));
                     jsonA.add(json0);
                     json.put(menu.getBiz_block(), jsonA);
@@ -52,6 +53,7 @@ public class GetMenuList {
                     json1.put("href", menu.getHref());
                     json1.put("spread", menu.getSpread());
                     json1.put("noteid", menu.getNoteid());
+                    json1.put("target",menu.getTarget());
                     jsonArray.add(json1);
                     json.put(menu.getBiz_block(), jsonArray);
                 }
@@ -75,6 +77,7 @@ public class GetMenuList {
                                 json001.put("href", menu.getHref());
                                 json001.put("spread", menu.getSpread());
                                 json001.put("noteid", menu.getNoteid());
+                                json001.put("target",menu.getTarget());
                                 jsona002.add(json001);
                                 jsonObject.put("children", jsona002);
 
@@ -87,6 +90,7 @@ public class GetMenuList {
                                 json001.put("href", menu.getHref());
                                 json001.put("spread", menu.getSpread());
                                 json001.put("noteid", menu.getNoteid());
+                                json001.put("target",menu.getTarget());
                                 jsona001.add(json001);
                                 jsonObject.put("children", jsona001);
                             }
