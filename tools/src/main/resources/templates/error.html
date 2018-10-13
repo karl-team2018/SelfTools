@@ -2,11 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
     <title>Error</title>
+    <link rel="stylesheet" href="../third/layui/css/layui.css" media="all">
+    <!--<link rel="stylesheet" href="../static/third/layui/css/layui.css" media="all">-->
+    <style>
+        /*404椤甸潰*/
+        .noFind{ text-align:center; padding-top:2%;}
+        .noFind i{ line-height:1em; font-size:12em !important; color: #393D50; display:block;}
+        .ufo{ text-align:center; height:100%; position:relative;}
+        .noFind .page_icon,.noFind .ufo_icon{ opacity:1; position:absolute; left:50%; transform:translateX(-50%); -ms-transform:translateX(-50%); -moz-transform:translateX(-50%); -webkit-transform:translateX(-50%); -o-transform:translateX(-50%);}
+        .noFind .page_icon{ top:300px; animation:pageGo 0.3s ease-in 0.3s forwards; -webkit-animation:pageGo 0.3s ease-in 0.3s forwards; -o-animation:pageGo 0.3s ease-in 0.3s forwards; -moz-animation:pageGo 0.3s ease-in 0.3s forwards;}
+        .noFind .ufo_icon{ top:100px; animation:ufo 1s ease-in 0.6s forwards; -webkit-animation:ufo 1s ease-in 0.6s forwards; -o-animation:ufo 1s ease-in 0.6s forwards; -moz-animation:ufo 1s ease-in 0.6s forwards;}
+        .page404{ margin-top:10%; opacity:0; font-size:0; animation:page404 0.5s ease-in 1.7s forwards; -webkit-animation:page404 0.5s ease-in 1.7s forwards; -o-animation:page404 0.5s ease-in 1.7s forwards; -moz-animation:page404 0.5s ease-in 1.7s forwards;}
+        .page404 p{ font-size: 20px; font-weight: 300; color: #999;}
+        /*椤甸潰琚惛璧�*/
+        @keyframes pageGo{from{font-size: 12em; top:300px;} to{font-size:0; opacity:0; top: 100px;}}
+        @-moz-keyframes pageGo{from{font-size: 12em; top:300px;} to{font-size:0; opacity:0; top:100px}}
+        @-webkit-keyframes pageGo{from{font-size: 12em; top:300px;} to{font-size:0; opacity:0; top:100px}}
+        @-o-keyframes pageGo{from{font-size: 12em; top:300px;} to{font-size:0; opacity:0; top:100px}}
+        /*ufo椋炶蛋*/
+        @keyframes ufo{0%{font-size: 14em; top:100px;} 20%{font-size: 12em; top:50px;} 100%{font-size:0; opacity:0; top:-100px; left:80%;}}
+        @-moz-keyframes ufo{0%{font-size: 14em; top:100px;} 20%{font-size: 12em;  top:50px;} 100%{font-size:0; opacity:0; top:-100px; left:80%;}}
+        @-webkit-keyframes ufo{0%{font-size: 14em; top:100px;} 20%{font-size: 12em;  top:50px;} 100%{font-size:0; opacity:0; top:-100px; left:80%;}}
+        @-o-keyframes ufo{0%{font-size: 14em; top:100px;} 20%{font-size: 12em; top:50px;} 100%{font-size:0; opacity:0; top:-100px; left:80%;}}
+        /*404鏄剧ず*/
+        @keyframes page404{from{opacity:0; font-size:2em;} to{opacity:1;font-size:2em;}}
+        @-moz-keyframes page404{from{opacity:0; font-size:2em;} to{opacity:1;font-size:2em;}}
+        @-webkit-keyframes page404{from{opacity:0; font-size:2em;} to{opacity:1;font-size:2em;}}
+        @-o-keyframes page404{from{opacity:0; font-size:2em;} to{opacity:1;font-size:2em;}}
+    </style>
 </head>
-<body>
-<h1>Error Handler</h1>
-<div th:text="${url}"></div>
-<div th:text="${exception}"></div>
+<body class="childrenBody">
+<div class="noFind">
+    <div class="ufo">
+        <i class="seraph icon-test ufo_icon"></i>
+        <i class="layui-icon page_icon">&#xe638;</i>
+    </div>
+    <div class="page404">
+        <i class="layui-icon">&#xe61c;</i>
+        <p>我勒个去，页面被外星人挟持了!</p>
+    </div>
+</div>
+<script type="text/javascript" src="../third/layui/layui.js"></script>
+<!--<script type="text/javascript" src="../static/third/layui/layui.js"></script>-->
 </body>
 </html>
