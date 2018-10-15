@@ -1,4 +1,5 @@
 *.class
 */log/*
-*/.idea/*
+tools/.idea/*
 .xml
+tools/target/*
