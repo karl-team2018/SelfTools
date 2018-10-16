@@ -1,0 +1,4 @@
+*.class
+*/log/*
+tools/target/*
+tools/.idea/*
